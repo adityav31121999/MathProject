@@ -17,8 +17,7 @@
 std::vector<long long int> mnacci(long long int m, long long int reps) {
 	// mnacci sequence vector
 	std::vector<long long int> seq;
-	seq.resize(m*reps);
-
+	seq.resize(2*m);
 	// initial elements
 	for (long long int i = 0; i < m-1; i++)
 		seq.push_back(0);
@@ -30,6 +29,7 @@ std::vector<long long int> mnacci(long long int m, long long int reps) {
 
 	// 2m+1 and onwards
 	while (seq.size() < m*reps) {
+		seq.resize(seq.size() + 1);
 		std::partial_sum(seq.end() - m, seq.end(), seq.end() - m, std::plus<>{});
 	}
 
@@ -60,13 +60,9 @@ std::vector<long long int> testtheory(long long int n, long long int reps) {
 
 	// compute mnacci using chebyshev coefficients
 	std::vector<long long int> out(n*reps);
-
-	// first column
-	seq[0][n] = 1;
-	for(long long int i = 0; i < n; i++)
-		seq[0][n+i] = std::pow(2, i);
 	
-	for(long long int i = 1; i < n; i++) {
+	// row-wise adjustment of coefficient triangle
+	for(long long int i = 0; i < n; i++) {
 		for(long long int j = i*n; j < n*reps; i++) {
 
 		}
