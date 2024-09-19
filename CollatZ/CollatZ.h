@@ -4,9 +4,9 @@
 #pragma once
 
 #include <iostream>
-#include "collatzfunc.hpp"
-#include "Collatzterm.hpp"
-#include "check.hpp"
+#include "basic.hpp"
+#include "gterm.hpp"
+#include "verify.hpp"
 
 
 /*

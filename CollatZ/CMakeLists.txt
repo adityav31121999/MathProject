@@ -11,7 +11,7 @@ set(CMAKE_C_STANDARD_REQUIRED 17)
 
 
 # Add source to this project's executable.
-add_executable (CollatZ "CollatZ.cpp" "CollatZ.h")
+add_executable (CollatZ "CollatZ.cpp" "CollatZ.h" "basic.hpp" "gterm.hpp" "verify.hpp")
 
 
 # TODO: Add tests and install targets if needed.
