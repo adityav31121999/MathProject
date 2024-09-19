@@ -96,6 +96,7 @@ std::vector<long long int> checkpositions(int node) {
         }
         p.push_back(count); // pushback count in vector
     }
+    
     if (p.size() == 0)
         return p;
 
@@ -107,19 +108,110 @@ std::vector<long long int> checkpositions(int node) {
 }
 
 
-std::vector<std::vector<long long int>> verifytheory(std::vector<long long int> p, int r) {
+/**
+ * @brief verification of the division ladder equation for collatz conjecture
+ * @param[in] p position vector
+ * @param[in] r base stem value
+ * @return vector of node values
+ */
+std::vector<std::vector<long long int>> verify(std::vector<long long int> p, long long int r) {
     // check for base stem
-    if((r-1)%9 == 0)
-        return {{0}};
+    if ((r - 1) % 9 == 0)
+        return { {0} };
 
     // number of permutations and nodes to be traversed
     int k = p.size();
     int permutes = 1;
     for (int i = 0; i < k; i++)
         permutes *= i;
-    
-    // holds all the values required for cross checking and verification
-    std::vector<std::vector<long long int>> v(permutes, std::vector<long long int>(2*p.size()+3));
-    
-    return v;
+
+    // hold result
+    std::vector<std::vector<long long int>> check(permutes, std::vector<long long int>(2 * k + 3, 0));
+
+    // sort original vector for positions
+    std::sort(p.begin(), p.end());
+
+    // run for permutations and also calculate nodes
+    do {
+        // hold first node
+        long long int t = (r - 1) / 3;
+
+        // Loop until we reach the kth term
+        for (int i = 0; i < k; i++) {
+            t = t * std::pow(2, p[i]);
+            if ((t - 1) % 9 == 0) {
+                check[permutes - 1][i] = p[i];
+                t = (t - 1) / 3;
+                break;
+            }
+            check[permutes - 1][i] = p[i];
+            t = (t - 1) / 3;
+        }
+
+        check[permutes - 1][k] = t;         // Store the node
+        check[permutes - 1][k + 1] = 0;     // add a 0 as separator
+
+        std::vector<long long int> q(0);
+        while (t != 1) {
+            // 2^n = 3node + 1 => log2(3node + 1) = n => pushback n
+            t = 3 * t + 1; // make it even
+            int count = 0;
+            while (t % 2 == 0) {
+                count++;
+                t = t / 2;  // divide by 2 and continue incrementing count
+            }
+            q.push_back(count); // pushback count in vector
+        }
+
+        int rvalue = std::pow(2, q[q.size() - 1]);
+        // reverse the vector this gives original vector
+        std::reverse(q.begin(), q.end());
+
+        // add this to vector c[permute]
+        check[permutes - 1].insert(check[permutes - 1].begin() + k + 2, q.begin(), q.end());
+
+        permutes--;
+    } while (std::next_permutation(p.begin(), p.end()));
+
+    /*
+
+        // reassign permutes its value
+        for (int i = 0; i < k; i++)
+            permutes *= i;
+
+        // print all values
+        for (int i = 0; i < permutes; i++) {
+            // first position vector
+            for (int j = 0; j < k + 1; j++) {
+                std::cout << check[i][j] << "    ";
+            }
+            std::cout << "    |    ";
+            for (int j = k + 1; j < 2 * k + 2; j++) {
+                std::cout << check[i][j] << "    ";
+            }
+        }
+
+    */
+    return check;
 }
+
+
+
+
+/*
+    // reassign permutes its value
+    for (int i = 0; i < k; i++)
+        permutes *= i;
+
+    // print all values
+    for (int i = 0; i < permutes; i++) {
+        // first position vector
+        for (int j = 0; j < k+1; j++) {
+            std::cout << check[i][j] << "    ";
+        }
+        std::cout << "    |    ";
+        for (int j = k+1; j < 2*k+2; j++) {
+            std::cout << check[i][j] << "    ";
+        }
+    }
+*/

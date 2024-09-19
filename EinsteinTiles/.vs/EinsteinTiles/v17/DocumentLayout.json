@@ -5,10 +5,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A56D7BC8-DAC9-457F-ADAE-B21562FDE6F6}|EinsteinTiles.vcxproj|D:\\MathProject\\EinsteinTiles\\tiles.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A56D7BC8-DAC9-457F-ADAE-B21562FDE6F6}|EinsteinTiles.vcxproj|solutionrelative:tiles.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A56D7BC8-DAC9-457F-ADAE-B21562FDE6F6}|EinsteinTiles.vcxproj|D:\\MathProject\\EinsteinTiles\\tiles.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A56D7BC8-DAC9-457F-ADAE-B21562FDE6F6}|EinsteinTiles.vcxproj|solutionrelative:tiles.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,21 +14,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "tiles.h",
-              "DocumentMoniker": "D:\\MathProject\\EinsteinTiles\\tiles.h",
-              "RelativeDocumentMoniker": "tiles.h",
-              "ToolTip": "D:\\MathProject\\EinsteinTiles\\tiles.h",
-              "RelativeToolTip": "tiles.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-09-19T05:28:13.383Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
