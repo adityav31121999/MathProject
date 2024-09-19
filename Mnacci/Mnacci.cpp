@@ -11,9 +11,9 @@ using std::endl;
 
 // main function
 int main() {
-	cout << "Hello CMake." << endl;
+	cout << "-_- Project for Mnacci -_-" << endl;
+	cout << "--------------------------" << endl;
 	cout << "M-variable generalization of Fibonacci Sequence:" << endl;
-
 	// mnacci sequence using chebyshev triangle and its columns stepwise
 
 	return 0;

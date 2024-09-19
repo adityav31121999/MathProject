@@ -6,11 +6,6 @@
 int main() {
 	std::cout << "-_- Project for Collatz Conjecture -_-" << std::endl;
 	std::cout << "--------------------------------------" << std::endl;
-	/**
-	* Functions included in this project:
-	* 1. Collatz Sequence From a Input
-	* 2. Stopping time For a Input
-	* 3. 
-	*/
+	std::cout << "" << std::endl;
 	return 0;
 }

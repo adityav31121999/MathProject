@@ -3,3 +3,4 @@
  Following are the projects and research work included in this Repository
  -> Collatz Conjecture
  -> M-nacci Sequence
+ -> Einstein Tiles
