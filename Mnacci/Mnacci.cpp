@@ -16,5 +16,6 @@ int main() {
 	cout << "M-variable generalization of Fibonacci Sequence:" << endl;
 	// mnacci sequence using chebyshev triangle and its columns stepwise
 
+
 	return 0;
 }

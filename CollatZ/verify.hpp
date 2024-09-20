@@ -26,35 +26,6 @@
 #include <numeric>
 
 
-// Calculate the factorial of a number
-int factorial(int n) {
-    return (n == 1 || n == 0) ? 1 : n * factorial(n - 1);
-}
-
-
-// Calculate the number of permutations of a vector of integers
-int calculatePermutations(const std::vector<int> vec) {
-    int totalPermutations = factorial(vec.size());
-    std::vector<int> counts;
-
-    for (int i = 0; i < vec.size(); i++) {
-        int count = 1;
-        for (int j = i + 1; j < vec.size(); j++) {
-            if (vec[i] == vec[j]) {
-                count++;
-            }
-        }
-        counts.push_back(count);
-    }
-
-    for (int count : counts) {
-        totalPermutations /= factorial(count);
-    }
-
-    return totalPermutations;
-}
-
-
 /**
  * @brief Check if a given node is valid according to the Collatz
  *        Conjecture.
@@ -106,7 +77,7 @@ int verifytheory(std::vector<int> p, int r) {
     for (int i = 1; i <= k; i++)
         permutes *= i;
 
-    std::cout << "Permutations (expected) are: " << permutes << std::endl;
+    std::cout << "\nPermutations (expected) are: " << permutes << std::endl;
 
     // hold result
     std::vector<std::vector<int>> check(permutes, std::vector<int>(k + 1, 0));
@@ -115,7 +86,11 @@ int verifytheory(std::vector<int> p, int r) {
     std::sort(p.begin(), p.end());
     for (int i = 0; i < k; i++)
         std::cout << p[i] << "   ";
-    std::cout << std::endl;
+    std::cout << " <- Sorted Vector" << std::endl;
+
+    for (int i = 0; i < k; i++)
+        std::cout << "m" << i + 1 << "  ";
+    std::cout << "Result" << std::endl;
 
     // run for permutations and also calculate nodes
     do {
@@ -147,6 +122,9 @@ int verifytheory(std::vector<int> p, int r) {
     // remove the duplicates
     check.erase(std::unique(check.begin(), check.end()), check.end());
 
+    // delete the first vector
+    check.erase(check.begin());
+
     // count even results
     int count = 0;
 
@@ -161,8 +139,9 @@ int verifytheory(std::vector<int> p, int r) {
     }
 
     std::cout << "Total Results: " << check.size() \
-        << "\n Total Even Results: " << count \
-        << "\n Correct Reults: " << (check.size() - count) << std::endl;
+              << "\nTotal Even Results: " << count \
+              << "\nCorrect Results: " << (check.size() - count) << std::endl;
 
     return 0;
 }
+

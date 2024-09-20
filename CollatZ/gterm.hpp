@@ -43,7 +43,7 @@ long long int generateterm(std::vector<int> positions, long long int k, long lon
 }
 
 
-/**
+/*
  * @brief verification of the division ladder equation for collatz conjecture
  * @param[in] p position vector
  * @param[in] r base stem value

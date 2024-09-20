@@ -56,13 +56,6 @@ build CMakeFiles\Mnacci.dir\Mnacci.cpp.obj: CXX_COMPILER__Mnacci_unscanned_Debug
   TARGET_COMPILE_PDB = CMakeFiles\Mnacci.dir\
   TARGET_PDB = Mnacci.pdb
 
-build CMakeFiles\Mnacci.dir\sequence.cpp.obj: CXX_COMPILER__Mnacci_unscanned_Debug D$:\MathProject\Mnacci\sequence.cpp || cmake_object_order_depends_target_Mnacci
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Ob0 /Od /RTC1 -std:c++20 -ZI
-  OBJECT_DIR = CMakeFiles\Mnacci.dir
-  OBJECT_FILE_DIR = CMakeFiles\Mnacci.dir
-  TARGET_COMPILE_PDB = CMakeFiles\Mnacci.dir\
-  TARGET_PDB = Mnacci.pdb
-
 build CMakeFiles\Mnacci.dir\pingal.cpp.obj: CXX_COMPILER__Mnacci_unscanned_Debug D$:\MathProject\Mnacci\pingal.cpp || cmake_object_order_depends_target_Mnacci
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Ob0 /Od /RTC1 -std:c++20 -ZI
   OBJECT_DIR = CMakeFiles\Mnacci.dir
@@ -78,7 +71,7 @@ build CMakeFiles\Mnacci.dir\pingal.cpp.obj: CXX_COMPILER__Mnacci_unscanned_Debug
 #############################################
 # Link the executable Mnacci.exe
 
-build Mnacci.exe: CXX_EXECUTABLE_LINKER__Mnacci_Debug CMakeFiles\Mnacci.dir\Mnacci.cpp.obj CMakeFiles\Mnacci.dir\sequence.cpp.obj CMakeFiles\Mnacci.dir\pingal.cpp.obj
+build Mnacci.exe: CXX_EXECUTABLE_LINKER__Mnacci_Debug CMakeFiles\Mnacci.dir\Mnacci.cpp.obj CMakeFiles\Mnacci.dir\pingal.cpp.obj
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Ob0 /Od /RTC1 -ZI
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib

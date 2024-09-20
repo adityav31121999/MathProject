@@ -12,7 +12,7 @@ endif()
 project ("Mnacci")
 
 # Add source to this project's executable.
-add_executable (Mnacci "Mnacci.cpp" "Mnacci.h" "sequence.cpp" "pingal.cpp")
+add_executable (Mnacci "Mnacci.cpp" "Mnacci.h"  "pingal.cpp")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET Mnacci PROPERTY CXX_STANDARD 20)

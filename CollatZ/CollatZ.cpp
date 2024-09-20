@@ -4,12 +4,17 @@
 #include "CollatZ.h"
 
 int main() {
-	std::cout << "-_- Project for Collatz Conjecture -_-" << std::endl;
-	std::cout << "--------------------------------------" << std::endl;
-	int r = 16;
-	std::vector<int> p;
-	p = { 3, 2, 1, 2, 4, 1, 3, 3};
-	verifytheory(p, r);
-	std::cout << "" << std::endl;
-	return 0;
+    std::cout << "Verify Theory with this program:" << std::endl;
+    int r = 0;
+    int k = 0;
+    std::cout << "ENTER Total number of nodes: ";
+    std::cin >> k;
+    std::cout << "\nENTER R-value: ";
+    std::cin >> r;
+    std::vector<int> p(k, 0);
+    std::cout << "\nEnter Positions: ";
+    for (int i = 0; i < k; i++)
+        std::cin >> p[i];
+    verifytheory(p, r);
+    return 0;
 }

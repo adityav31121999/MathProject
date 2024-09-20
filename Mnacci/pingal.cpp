@@ -83,20 +83,13 @@ std::vector<long long int> testtheory(long long int n, long long int reps) {
 	// compute mnacci using chebyshev coefficients
 	std::vector<long long int> out(n*reps);
 	
-	// row-wise adjustment of coefficient triangle
-	for(long long int i = 0; i < n; i++) {
-		// loop over the elements of the i-th group
-		for(long long int j = i*n; j < n*reps; j++) {
-			// the element is the sum of the last m elements
-			coefs[i][j] = std::accumulate(seq[i].begin() + j - n, seq[i].begin() + j, 0);
-		}
-	}
+	// shift each row of seq by m elements in coefs
 
 	// add all elements
 	for(long long int i = 0; i < n*reps; i++) {
 		// loop over the elements of the i-th group
 		for(long long int j = 0; j < n; j++) {
-			out[i] += std::pow(-1, j+1)*seq[j][i];
+			out[i] += coefs[j][i];
 		}
 	}
 
