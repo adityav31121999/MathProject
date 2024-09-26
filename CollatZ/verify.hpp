@@ -27,8 +27,7 @@
 
 
 /**
- * @brief Check if a given node is valid according to the Collatz
- *        Conjecture.
+ * @brief Check if a given node is valid according to the Collatz Conjecture.
  * @param[in] node the node to check
  * @return a vector of positions of the bits to flip in the division
  *         ladder to get the next node in the sequence. If the node is
@@ -48,7 +47,7 @@ std::vector<long long int> checkpositions(int node) {
     }
     
     if (p.size() == 0)
-        return p;
+        return {0};
 
     int rvalue = std::pow(2, p[p.size() - 1]);
     // reverse the vector this gives original vector

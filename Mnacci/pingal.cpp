@@ -80,6 +80,22 @@ std::vector<long long int> testtheory(long long int n, long long int reps) {
 	// row-wise adjustment on the chebyshev coefficients triangle
 	std::vector<std::vector<long long int>> coefs(n, std::vector<long long int>(n*reps, 0));
 
+	// to adjust seq 2D vector in coefs 2D vector
+	// keep first seq[0] as it is
+	// adjust seq[1] by adding m 0s before first non-0 element
+	// adjust seq[2] by adding 2m 0s before first non-0 element
+	// adjust seq[3] by adding 3m 0s before first non-0 element
+	// adjust seq[4] by adding 4m 0s before first non-0 element
+	// adjust seq[5] by adding 5m 0s before first non-0 element
+	// adjust seq[6] by adding 6m 0s before first non-0 element
+	// adjust seq[7] by adding 7m 0s before first non-0 element
+	// adjust seq[8] by adding 8m 0s before first non-0 element
+	// adjust seq[9] by adding 9m 0s before first non-0 element
+	// adjust seq[10] by adding 10m 0s before first non-0 element
+	// adjust seq[11] by adding 11m 0s before first non-0 element
+	// ...
+	// and so on
+
 	// compute mnacci using chebyshev coefficients
 	std::vector<long long int> out(n*reps);
 	
