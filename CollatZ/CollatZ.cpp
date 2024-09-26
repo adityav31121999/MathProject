@@ -1,4 +1,5 @@
-﻿// CollatZ.cpp : Defines the entry point for the application.
+﻿
+// CollatZ.cpp : Defines the entry point for the application.
 //
 
 #include "CollatZ.h"

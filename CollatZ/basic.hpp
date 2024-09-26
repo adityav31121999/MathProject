@@ -29,6 +29,12 @@ std::vector<long long int> collatzseq(long long int input) {
 }
 
 
+/**
+ * @brief Stopping time for a positive integer.
+ *		  Using Collatz Conjecture to calculate number of steps required to reach 1.
+ * @param[in] input positive integer input
+ * @return Stpping time
+ */
 int stopping(long long int input) {
 	int steps = 0;
 	long long int n = input;

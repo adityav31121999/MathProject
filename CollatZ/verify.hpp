@@ -34,20 +34,23 @@
  *         invalid, the function returns an empty vector.
  */
 std::vector<long long int> checkpositions(int node) {
-    std::vector<long long int> p;
-    while(node != 1) {
+    // when input is one
+    if (node == 1) {
+        return { 0 };
+    }
+
+    // when input is not 1
+    std::vector<long long int> p(0);
+    while (node != 1) {
         // 2^n = 3node + 1 => log2(3node + 1) = n => pushback n
-        node = 3*node + 1; // make it even
+        node = 3 * node + 1; // make it even
         int count = 0;
-        while(node%2 == 0) {
+        while (node % 2 == 0) {
             count++;
-            node = node/2;  // divide by 2 and continue incrementing count
+            node = node / 2;  // divide by 2 and continue incrementing count
         }
         p.push_back(count); // pushback count in vector
     }
-    
-    if (p.size() == 0)
-        return {0};
 
     int rvalue = std::pow(2, p[p.size() - 1]);
     // reverse the vector this gives original vector
@@ -76,7 +79,7 @@ int verifytheory(std::vector<int> p, int r) {
     for (int i = 1; i <= k; i++)
         permutes *= i;
 
-    std::cout << "\nPermutations (expected) are: " << permutes << std::endl;
+    std::cout << "\nPermutations (possible/expected) are: " << permutes << std::endl;
 
     // hold result
     std::vector<std::vector<int>> check(permutes, std::vector<int>(k + 1, 0));
@@ -86,7 +89,8 @@ int verifytheory(std::vector<int> p, int r) {
     for (int i = 0; i < k; i++)
         std::cout << p[i] << "   ";
     std::cout << " <- Sorted Vector" << std::endl;
-
+    
+    // print name of vector positions and result column
     for (int i = 0; i < k; i++)
         std::cout << "m" << i + 1 << "  ";
     std::cout << "Result" << std::endl;

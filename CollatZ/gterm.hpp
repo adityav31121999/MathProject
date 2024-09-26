@@ -32,15 +32,16 @@ long long int generateterm(std::vector<int> positions, long long int k, long lon
     for (int i = 0; i < k; i++) {
         // Flip the bit at position i to compute the next term
         t = (t * std::pow(2, positions[i]) - 1) / 3;
-        /*
         if ((t - 1) % 9 == 0) {
             t = (t - 1) / 3;
+            std::cout << "Stops at " << i << " due to no-branching criteria." << std::endl;
             break;
         }
-        */
     }
     return t;
 }
+
+
 
 
 /*
@@ -174,34 +175,3 @@ std::vector<std::vector<long long int>> checktheory(std::vector<long long int> p
     return c;
 }
 */
-
-/**
- * @brief Compute the kth term of the Collatz sequence for a given starting value R
- * @param[in] positions the positions of the bits to flip
- * @param[in] k the kth term to compute
- * @param[in] Rvalue value from base stem
- * @return the kth term of the sequence
- */
-long long int generateterm(std::vector<int> positions, long long int k, long long int Rvalue) {
-    // Compute the kth term of the sequence
-    if ((Rvalue - 1) % 9 == 0) {
-        std::cerr << "Branchless Stem Value -_-" << std::endl;
-        return (Rvalue - 1) / 3;
-    }
-
-    // calculate the first node
-    long long int t = (Rvalue - 1) / 3;
-
-    // Loop until we reach the kth term
-    for (int i = 0; i < k; i++) {
-        // Flip the bit at position i to compute the next term
-        t = (t * std::pow(2, positions[i]) - 1) / 3;
-        if ((t - 1) % 9 == 0) {
-            t = (t - 1) / 3;
-            std::cout << "Stops at " << i << " due to no-branching criteria." << std::endl;
-            break;
-        }
-    }
-    return t;
-}
-
