@@ -79,3 +79,36 @@ std::vector<std::pair<long long int, int>> collatzsteps(long long int lim1, long
 	return csteps;
 }
 
+
+/**
+ * @brief Check if a given node is valid according to the Collatz Conjecture.
+ * @param[in] node the node to check
+ * @return a vector of positions of the bits to flip in the division
+ *         ladder to get the next node in the sequence. If the node is
+ *         invalid, the function returns an empty vector.
+ */
+std::vector<long long int> checkpositions(int node) {
+    // when input is one
+    if (node == 1) {
+        return { 0 };
+    }
+
+    // when input is not 1
+    std::vector<long long int> p(0);
+    while (node != 1) {
+        // 2^n = 3node + 1 => log2(3node + 1) = n => pushback n
+        node = 3 * node + 1; // make it even
+        int count = 0;
+        while (node % 2 == 0) {
+            count++;
+            node = node / 2;  // divide by 2 and continue incrementing count
+        }
+        p.push_back(count); // pushback count in vector
+    }
+
+    int rvalue = std::pow(2, p[p.size() - 1]);
+    // reverse the vector this gives original vector
+    std::reverse(p.begin(), p.end());
+    p[0] = rvalue;
+    return p;
+}

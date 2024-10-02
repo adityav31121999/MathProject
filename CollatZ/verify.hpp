@@ -18,6 +18,10 @@
  * - Use another function to check whether the obtained values are correct or not
  * - This function will calculate whether all the values involved are correct or not
  * - Return the vector
+ * 
+ * For checking growth of branch from base stem:
+ * - Get r-value from base stem
+ * - Get a vector of numebrs/positions
  */
 
 #include <vector>
@@ -25,40 +29,11 @@
 #include <algorithm>
 #include <numeric>
 
-
-/**
- * @brief Check if a given node is valid according to the Collatz Conjecture.
- * @param[in] node the node to check
- * @return a vector of positions of the bits to flip in the division
- *         ladder to get the next node in the sequence. If the node is
- *         invalid, the function returns an empty vector.
- */
-std::vector<long long int> checkpositions(int node) {
-    // when input is one
-    if (node == 1) {
-        return { 0 };
-    }
-
-    // when input is not 1
-    std::vector<long long int> p(0);
-    while (node != 1) {
-        // 2^n = 3node + 1 => log2(3node + 1) = n => pushback n
-        node = 3 * node + 1; // make it even
-        int count = 0;
-        while (node % 2 == 0) {
-            count++;
-            node = node / 2;  // divide by 2 and continue incrementing count
-        }
-        p.push_back(count); // pushback count in vector
-    }
-
-    int rvalue = std::pow(2, p[p.size() - 1]);
-    // reverse the vector this gives original vector
-    std::reverse(p.begin(), p.end());
-    p[0] = rvalue;
-    return p;
-}
-
+/*
+    two different functions for verification
+    one to check the different values generated using permutations of location
+    second to check the growth of branch from base stem
+*/
 
 /**
  * @brief verification of the division ladder equation for collatz conjecture
@@ -146,5 +121,34 @@ int verifytheory(std::vector<int> p, int r) {
               << "\nCorrect Results: " << (check.size() - count) << std::endl;
 
     return 0;
+}
+
+
+std::vector<std::vector<int>> verifytheory(long long int r) {
+    std::vector<std::vector<int>> v(100, std::vector<int>(100, 0));          // holds all the locations
+    int count = 0;                  // to calculate which column to be selecteds
+    int i = 0;                      // to calculate which row to be selected
+    // take r value and calculate node value
+    int node = (r - 1) / 3;
+    // first location is of r-value itself
+    v[0][0] = std::log2(r);
+    count++, i++;
+    // loop for more nodes
+    while(count <= 100) {
+        if(node % 3 == 0) {
+            v[i][count] = 0;
+            break;
+        }
+        if((node-1) % 3 == 0 && (node-1) % 9 != 0) {
+            int p = 0;
+            do{
+                node *= 2;
+                p++;
+            } while((node-1) % 3 == 0 && (node-1) % 9 != 0);
+            v[i][count] = p;
+        }
+        count++, i++;
+    }
+    return v;
 }
 
