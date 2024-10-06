@@ -5,7 +5,6 @@
 #include <vector>
 #include <numeric>
 #include <functional>
-#include <filesystem>
 
 
 /**
@@ -54,6 +53,40 @@ int stopping(long long int input) {
 
 
 /**
+ * @brief Check if a given node is valid according to the Collatz Conjecture.
+ * @param[in] node the node to check
+ * @return a vector of positions of the bits to flip in the division
+ *         ladder to get the next node in the sequence. If the node is
+ *         invalid, the function returns an empty vector.
+ */
+std::vector<long long int> checkpositions(int node) {
+    // when input is one
+    if (node == 1) {
+        return { 0 };
+    }
+
+    // when input is not 1
+    std::vector<long long int> p(0);
+    while (node != 1) {
+        // 2^n = 3node + 1 => log2(3node + 1) = n => pushback n
+        node = 3 * node + 1; // make it even
+        int count = 0;
+        while (node % 2 == 0) {
+            count++;
+            node = node / 2;  // divide by 2 and continue incrementing count
+        }
+        p.push_back(count); // pushback count in vector
+    }
+
+	int rvalue = static_cast<int>(std::pow(2, p[p.size() - 1]));
+    // reverse the vector this gives original vector
+    std::reverse(p.begin(), p.end());
+    p[0] = rvalue;
+    return p;
+}
+
+
+/**
  * @brief Compute Stopping time of Collatz sequence for a range of numbers
  * @param[in] lim1 lower limit of the range
  * @param[in] lim2 upper limit of the range
@@ -81,34 +114,27 @@ std::vector<std::pair<long long int, int>> collatzsteps(long long int lim1, long
 
 
 /**
- * @brief Check if a given node is valid according to the Collatz Conjecture.
- * @param[in] node the node to check
- * @return a vector of positions of the bits to flip in the division
- *         ladder to get the next node in the sequence. If the node is
- *         invalid, the function returns an empty vector.
+ * @brief Compute Stopping time of Collatz sequence for a range of numbers
+ * @param[in] lim1 lower limit of the range
+ * @param[in] lim2 upper limit of the range
+ * @return a vector of pairs where each pair contains the number and
+ *         the number of steps to reach 1
  */
-std::vector<long long int> checkpositions(int node) {
-    // when input is one
-    if (node == 1) {
-        return { 0 };
-    }
-
-    // when input is not 1
-    std::vector<long long int> p(0);
-    while (node != 1) {
-        // 2^n = 3node + 1 => log2(3node + 1) = n => pushback n
-        node = 3 * node + 1; // make it even
-        int count = 0;
-        while (node % 2 == 0) {
-            count++;
-            node = node / 2;  // divide by 2 and continue incrementing count
-        }
-        p.push_back(count); // pushback count in vector
-    }
-
-    int rvalue = std::pow(2, p[p.size() - 1]);
-    // reverse the vector this gives original vector
-    std::reverse(p.begin(), p.end());
-    p[0] = rvalue;
-    return p;
+std::vector<std::pair<int, int>> collatzsteps(std::vector<int> v) {
+	std::vector<std::pair<int, int>> csteps;
+	for (int i = 0; i < v.size(); i++) {
+		int steps = 0;
+		int n = v[i];
+		// Compute the Collatz sequence for the number
+		while (n != 1) {
+			if (n % 2 == 0)
+				n /= 2; // if n is even, divide it by 2
+			else
+				n = 3 * n + 1; // if n is odd, multiply it by 3 and add 1
+			steps++; // increment the number of steps
+		}
+		// Store the number and the number of steps
+		csteps.push_back({ v[i], steps });
+	}
+	return csteps;
 }

@@ -3,8 +3,8 @@
 #include <cmath>
 #include <vector>
 #include <numeric>
+#include <algorithm>
 #include <functional>
-#include <filesystem>
 
 
 /**
@@ -31,7 +31,7 @@ long long int generateterm(std::vector<int> positions, long long int k, long lon
     // Loop until we reach the kth term
     for (int i = 0; i < k; i++) {
         // Flip the bit at position i to compute the next term
-        t = (t * std::pow(2, positions[i]) - 1) / 3;
+        t = (t * static_cast<int>(std::pow(2, positions[i]) - 1)) / 3;
         if ((t - 1) % 9 == 0) {
             t = (t - 1) / 3;
             std::cout << "Stops at " << i << " due to no-branching criteria." << std::endl;
@@ -42,136 +42,66 @@ long long int generateterm(std::vector<int> positions, long long int k, long lon
 }
 
 
-
-
-/*
- * @brief verification of the division ladder equation for collatz conjecture
- * @param[in] p position vector
- * @param[in] r base stem value
- * @return vector of node values
- 
-int verifytheory1(std::vector<int> p, int r) {
-    // check for base stem
+/**
+ * @brief Given a position vector p and number of nodes k, this function
+ *        generates all permutations of positions and calculates the
+ *        immediate node and branch for each permutation.
+ * @param[in] r The number of the node in the Collatz sequence.
+ * @param[in] k The number of nodes to be traversed.
+ * @param[in] p A vector of positions.
+ * @return A 2D vector of size (number of permutations, k+2) where each row
+ *         contains the permutation of positions, immediate node value and
+ *         branch value.
+ */
+std::vector<std::vector<int>> checksamestop(int r, int k, std::vector<int> p) {
+    // for other values
+    std::sort(p.begin(), p.end());      // sort position vector
+    // hold all results
+    std::vector<std::vector<int>> result(1, std::vector<int>(k+2, 0));
+    // for branchless values
     if (((r - 1) % 9 == 0) || ((r - 1) % 3 != 0)) {
-        std::cout << "It ends at R" << std::endl;
-        return 0;
+        std::cout << "It ends with R -_-" << std::endl;
     }
-
-
-    int k = p.size();
-    int permutes = calculatePermutations(p);
-
-    // hold result
-    std::vector<std::vector<int>> check(permutes, std::vector<int>(k + 1, 0));
-
-    // sort original vector for positions
-    std::sort(p.begin(), p.end());
-    for (int i = 0; i < k; i++)
-        std::cout << p[i] << "   ";
-    std::cout << std::endl;
-
-    int unique = 0;
-
-    // run for permutations and also calculate nodes
-    do {
-        // hold first node
-        int t = (r - 1) / 3;
-
-        // Loop until we reach the kth term
-        for (int i = 0; i < k; i++) {
-            t *= std::pow(2, p[i]);
-            // for branchless branches and nodes
-            if ((t - 1) % 9 == 0) {
-                check[permutes][i] = p[i];
-                t = (t - 1) / 3;
-                break;
+    else {
+        // perform all permutations and generate terms
+        int R = static_cast<int>(std::log2(r));
+        std::cout << "\nMaximum Possible Stopping time: " << std::accumulate(p.begin(), p.end(), 0) + k + R + 1 << std::endl;
+        do {
+            int node = (r-1)/3;                 // node value from R
+            int m = 0, count  = 0;              // for step counter
+            std::vector<int> currentResult(k + 2, 0);
+            // loop for current permutation
+            for(int i = 0; i < k; i++) {
+                // calculate node for current position
+                node *= static_cast<int>(std::pow(2, p[i]));
+                currentResult[i] = p[i];
+                m += currentResult[i];
+                count++;
+                // break for branchless node
+                if((node-1) % 9 == 0) {
+                    node = (node - 1) / 3;
+                    break;
+                }
+                // break for connecting nodes
+                if ((node - 1) % 3 != 0) {
+                    break;
+                }
+                // for branching not possible
+                node = (node - 1)/3;            // calculate new node
             }
-            // if wrong node comes in
-            if ((t - 1) % 3 != 0) {
-                check[permutes][i] = p[i];
-                break;
-            }
-            check[permutes][i] = p[i];
-            t = (t - 1) / 3;
-        }
 
-        check[permutes][k] = t;         // Store the node
-        unique++;
-        permutes++;
-    } while (std::next_permutation(p.begin(), p.end()));
+            // store all the values and resize for next iteration
+            currentResult[k] = node;
+            currentResult[k + 1] = m + R + 1 + count;
+            result.push_back(currentResult);
+        } while(std::next_permutation(p.begin(), p.end()));
 
-    // remove the duplicates
-    check.erase(std::unique(check.begin(), check.end()), check.end());
-
-    // count even results
-    int count = 0;
-
-    // print the result
-    for (int i = 0; i < check.size(); i++) {
-        for (int j = 0; j < check[i].size(); j++) {
-            std::cout << check[i][j] << "   ";
-        }
-        std::cout << std::endl;
-        if (check[i][k] % 2 == 0) // Corrected the index to use k instead of check[0].size()
-            count++;
+        // remove first row containing all zeroes
+        std::sort(result.begin(), result.end());
+        result.erase(result.begin());
+        // keep only unique rows in result 2D vector
+        result.erase(std::unique(result.begin(), result.end()), result.end());
     }
-
-    std::cout << "Total Results: " << unique \
-        << "\n Total Unique Results: " << check.size() \
-        << "\n Total Even Results: " << count \
-        << "\n Correct Reults: " << (check.size() - count) << std::endl;
-
-    return 0;
+    
+    return result;
 }
-
-*/
-
-
-/*
-//* @brief verification of the division ladder equation
-//* @param[in] p position vector
-//* @param[in] r base stem value
-//* @return vector of node values
-std::vector<std::vector<long long int>> checktheory(std::vector<long long int> p, int r) {
-    // check for base stem
-    if ((r - 1) % 9 == 0)
-        return { {0} };
-
-    // number of permutations and nodes to be traversed
-    int k = p.size();
-    int permutes = 1;
-    for (int i = 0; i < k; i++)
-        permutes *= i;
-
-    // holds permutation
-    std::vector<std::vector<long long int>> ps(permutes, std::vector<long long int>(k, 0));
-    // hold result
-    std::vector<std::vector<long long int>> c(permutes, std::vector<long long int>(k + 1, 0));
-
-    // sort original vector for positions
-    std::sort(p.begin(), p.end());
-    // run for permutations and also calculate nodes
-    do {
-        // allot permutation of p to ps
-        ps[permutes - 1] = p;
-        // hold first node
-        long long int t = (r - 1) / 3;
-
-        // Loop until we reach the kth term
-        for (int i = 0; i < k; i++) {
-            // Flip the bit at position i to compute the next term
-            t = t * std::pow(2, p[i]);
-            if ((t - 1) % 9 == 0)
-                break;
-            c[permutes][i] = i;
-            t = (t - 1) / 3;
-        }
-
-        // Store the node
-        c[permutes][k] = t;
-        permutes--;
-    } while (std::next_permutation(p.begin(), p.end()));
-
-    return c;
-}
-*/

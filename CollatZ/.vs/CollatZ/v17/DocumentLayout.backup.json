@@ -40,10 +40,23 @@
               "RelativeDocumentMoniker": "CMakeLists.txt",
               "ToolTip": "D:\\MathProject\\CollatZ\\CMakeLists.txt",
               "RelativeToolTip": "CMakeLists.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
               "WhenOpened": "2024-09-07T11:55:06.486Z",
               "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "verify.hpp",
+              "DocumentMoniker": "D:\\MathProject\\CollatZ\\verify.hpp",
+              "RelativeDocumentMoniker": "verify.hpp",
+              "ToolTip": "D:\\MathProject\\CollatZ\\verify.hpp",
+              "RelativeToolTip": "verify.hpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADUAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-10-06T13:29:35.737Z",
               "EditorCaption": ""
             },
             {
@@ -54,7 +67,7 @@
               "RelativeDocumentMoniker": "CollatZ.cpp",
               "ToolTip": "D:\\MathProject\\CollatZ\\CollatZ.cpp",
               "RelativeToolTip": "CollatZ.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-09-07T11:58:48.401Z",
               "EditorCaption": ""
@@ -67,7 +80,7 @@
               "RelativeDocumentMoniker": "basic.hpp",
               "ToolTip": "D:\\MathProject\\CollatZ\\basic.hpp",
               "RelativeToolTip": "basic.hpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADgAAABKAAAAAAAAAA==",
+              "ViewState": "AgIAADwAAAAAAAAAAAAqwFAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-09-26T14:24:37.056Z",
               "EditorCaption": ""
@@ -80,22 +93,9 @@
               "RelativeDocumentMoniker": "gterm.hpp",
               "ToolTip": "D:\\MathProject\\CollatZ\\gterm.hpp",
               "RelativeToolTip": "gterm.hpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAqwCAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-09-26T14:23:26.904Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "verify.hpp",
-              "DocumentMoniker": "D:\\MathProject\\CollatZ\\verify.hpp",
-              "RelativeDocumentMoniker": "verify.hpp",
-              "ToolTip": "D:\\MathProject\\CollatZ\\verify.hpp",
-              "RelativeToolTip": "verify.hpp",
-              "ViewState": "AgIAAHIAAAAAAAAAAAAAAJYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-09-18T07:45:43.627Z",
               "EditorCaption": ""
             }
           ]

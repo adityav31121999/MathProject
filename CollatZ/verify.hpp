@@ -11,7 +11,7 @@
  * - If any value T*2^n -1 is divisible by 9, then this is not valid. Return 0.
  * - If all the values are valid, return the node value.
  * 
- * For cecking theory and finding a patter:
+ * For cecking theory and finding a pattern:
  * - Get a vector of numebrs/positions
  * - Perform permutations on positions, and store in 2D vector.
  * - Operate using above process and store values along with positions 
@@ -27,6 +27,7 @@
 #include <vector>
 #include <iostream>
 #include <algorithm>
+#include <functional>
 #include <numeric>
 
 /*
@@ -77,7 +78,7 @@ int verifytheory(std::vector<int> p, int r) {
 
         // Loop until we reach the kth term
         for (int i = 0; i < k; i++) {
-            t *= std::pow(2, p[i]);
+            t *= static_cast<int>(std::pow(2, p[i]));
             // for branchless branches and nodes
             if ((t - 1) % 9 == 0) {
                 check[permutes - 1][i] = p[i];
@@ -121,34 +122,5 @@ int verifytheory(std::vector<int> p, int r) {
               << "\nCorrect Results: " << (check.size() - count) << std::endl;
 
     return 0;
-}
-
-
-std::vector<std::vector<int>> verifytheory(long long int r) {
-    std::vector<std::vector<int>> v(100, std::vector<int>(100, 0));          // holds all the locations
-    int count = 0;                  // to calculate which column to be selecteds
-    int i = 0;                      // to calculate which row to be selected
-    // take r value and calculate node value
-    int node = (r - 1) / 3;
-    // first location is of r-value itself
-    v[0][0] = std::log2(r);
-    count++, i++;
-    // loop for more nodes
-    while(count <= 100) {
-        if(node % 3 == 0) {
-            v[i][count] = 0;
-            break;
-        }
-        if((node-1) % 3 == 0 && (node-1) % 9 != 0) {
-            int p = 0;
-            do{
-                node *= 2;
-                p++;
-            } while((node-1) % 3 == 0 && (node-1) % 9 != 0);
-            v[i][count] = p;
-        }
-        count++, i++;
-    }
-    return v;
 }
 
