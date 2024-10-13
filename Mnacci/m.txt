@@ -49,8 +49,8 @@ std::vector<std::vector<long long int>> chebyshev1st(long long int n, long long 
 	seq[1][0] = 1;
 
 	// fill in the chebyshev coefficients using the recurrence definition
-	for (int i = 2; i <= n; i++) {
-		for (int j = 0; j < n*reps; j++) {
+	for (long long int i = 2; i < n; i++) {
+		for (long long int j = 0; j < n*reps; j++) {
 			// the element is 2 times the previous element minus the element two positions before
 			seq[i][j] = 2 * seq[i-1][j] - seq[i-2][j];
 		}
@@ -111,3 +111,6 @@ std::vector<long long int> testtheory(long long int n, long long int reps) {
 
 	return out;
 }
+
+////////////////////////////////////////////////
+
